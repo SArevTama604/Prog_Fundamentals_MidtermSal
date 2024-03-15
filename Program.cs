@@ -2,6 +2,8 @@
 {
     internal class Program
     {
+        private static object circumference;
+
         static void Main(string[] args)
         {
 
@@ -111,11 +113,53 @@
             //---- Financial Calculator ----------------
             else if (choice == "2")
             {
-                // Placeholder for user input and selection logic for Financial Calculator options:
-                // 1. Net Income
-                // 2. Rule of 72
-                // 3. Net Worth
-                // Use if-else statements to navigate between options and try-catch blocks to handle input errors.
+            StartFinancialCalculator:
+                Console.WriteLine("Finance Calculator Options:");
+                Console.WriteLine("1. Net Income");
+                Console.WriteLine("2. Rule of 72");
+                Console.WriteLine("3. Net Worth");
+                Console.WriteLine("4. Exit");
+                Console.Write("Enter your choice: ");
+                string financialChoice = Console.ReadLine();
+
+            if (financialChoice == "1")
+                {
+                    Console.WriteLine("Calculate Net Income:");
+                    Console.Write("Enter your income: $");
+                    double income = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Enter your costs: $");
+                    double costs = Convert.ToDouble(Console.ReadLine());
+                    double netIncome = income - costs;
+                    Console.WriteLine("Your net income is: $" + netIncome);
+                }
+            else if (financialChoice == "2")
+                {
+                    Console.WriteLine("Calculate Rule of 72:");
+                    Console.Write("Enter the annual interest rate (%): ");
+                    double interestRate = Convert.ToDouble(Console.ReadLine());
+                    double yearsToDouble = 72 / interestRate;
+                    Console.WriteLine("It will take approximately " + yearsToDouble.ToString("0.00") + " years to double your money.");
+                }
+            else if (financialChoice == "3")
+                {
+                    Console.WriteLine("Calculate Net Worth:");
+                    Console.Write("Enter your total assets: $");
+                    double assets = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Enter your total liabilities: $");
+                    double liabilities = Convert.ToDouble(Console.ReadLine());
+                    double netWorth = assets - liabilities;
+                    Console.WriteLine("Your net worth is: $" + netWorth);
+                }
+            else if (financialChoice == "4")
+                {
+                    Console.WriteLine("Exiting the Financial Calculator. Returning to the main menu.");
+                    goto Start;
+                }
+            else
+                {
+                    Console.WriteLine("Invalid choice. Please enter a valid option (1, 2, 3, or 4).");
+                    goto StartFinancialCalculator;
+                }
 
                 goto Start;
             }
@@ -123,12 +167,65 @@
             //---- Geomertry Calculator ----------------
             else if (choice == "3")
             {
-                // Placeholder for user input and selection logic for Geometry Calculator options:
-                // 1. Square - calculate area and perimeter
-                // 2. Rectangle - calculate area and perimeter
-                // 3. Circle - calculate area and circumference
-                // 4. Right Cone - calculate volume
-                // Use if-else statements for shape selection and perform calculations based on inputs.
+            StartGeometryCalculator:
+                Console.WriteLine("Geometry Calculator Options:");
+                Console.WriteLine("1. Square");
+                Console.WriteLine("2. Rectangle");
+                Console.WriteLine("3. Circle");
+                Console.WriteLine("4. Right Circular Cone");
+                Console.WriteLine("5. Exit");
+                Console.Write("Enter your choice: ");
+                string geometryChoice = Console.ReadLine();
+
+                if (geometryChoice == "1")
+                {
+                    Console.WriteLine("Calculate Square:");
+                    Console.Write("Enter the side length: ");
+                    double sideLength = Convert.ToDouble(Console.ReadLine());
+                    double area = sideLength * sideLength;
+                    double perimeter = 4 * sideLength;
+                    Console.WriteLine($"Area: {area}, Perimeter: {perimeter}");
+                }
+                else if (geometryChoice == "2")
+                {
+                    Console.WriteLine("Calculate Rectangle:");
+                    Console.Write("Enter the length: ");
+                    double length = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Enter the width: ");
+                    double width = Convert.ToDouble(Console.ReadLine());
+                    double area = length * width;
+                    double perimeter = 2 * (length + width);
+                    Console.WriteLine($"Area: {area}, Circumference: {circumference}");
+                }
+                else if (geometryChoice == "3")
+                {
+                    Console.WriteLine("Calculate Circle:");
+                    Console.Write("Enter the radius: ");
+                    double radius = Convert.ToDouble(Console.ReadLine());
+                    double area = Math.PI * radius * radius;
+                    double circumference = 2 * Math.PI * radius;
+                    Console.WriteLine($"Area: {area}, Circumference: {circumference}");
+                }
+                else if (geometryChoice == "4")
+                {
+                    Console.WriteLine("Calculate Right Circular Cone:");
+                    Console.Write("Enter the radius: ");
+                    double radius = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Enter the height: ");
+                    double height = Convert.ToDouble(Console.ReadLine());
+                    double volume = (1.0 / 3.0) * Math.PI * radius * radius * height;
+                    Console.WriteLine($"Volume: {volume}");
+                }
+                else if (geometryChoice == "5")
+                {
+                    Console.WriteLine("Exiting the Geometry Calculator. Returning to the main menu.");
+                    goto Start;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice. Please enter a valid option (1, 2, 3, 4, or 5).");
+                    goto StartGeometryCalculator;
+                }
 
                 goto Start;
             }
@@ -136,16 +233,45 @@
             //---- Cartesian Plane ----------------
             else if (choice == "4")
             {
-                // Placeholder for input, calculation, and display logic:
-                // 1. Ask for x and y values.
-                // 2. Determine the quadrant or special case (origin, x-axis, y-axis).
-                // Use if-else structures to assess and display the point's location based on x and y values.
+                Console.WriteLine("Cartesian Plane:");
+                Console.Write("Enter the x-coordinate: ");
+                double x = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Enter the y-coordinate: ");
+                double y = Convert.ToDouble(Console.ReadLine());
+                if (x == 0 && y == 0)
+                {
+                    Console.WriteLine("The point is at the origin.");
+                }
+                else if (x == 0)
+                {
+                    Console.WriteLine($"The point is on the y-axis at y = {y}.");
+                }
+                else if (y == 0)
+                {
+                    Console.WriteLine($"The point is on the x-axis at x = {x}.");
+                }
+                else if (x > 0 && y > 0)
+                {
+                    Console.WriteLine("The point is in Quadrant I.");
+                }
+                else if (x < 0 && y > 0)
+                {
+                    Console.WriteLine("The point is in Quadrant II.");
+                }
+                else if (x < 0 && y < 0)
+                {
+                    Console.WriteLine("The point is in Quadrant III.");
+                }
+                else
+                {
+                    Console.WriteLine("The point is in Quadrant IV.");
+                }
 
                 goto Start;
             }
             else if (choice == "5")
             {
-                // Exit the program
+                Console.WriteLine("Exiting the program. Have a nice day!");
                 return;
             }
             else
